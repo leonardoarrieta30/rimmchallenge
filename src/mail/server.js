@@ -1,9 +1,12 @@
 const brevo = require("@getbrevo/brevo");
+const dotenv= require("dotenv");
+dotenv.config();
+
 
 const apiInstance = new brevo.TransactionalEmailsApi();
 apiInstance.setApiKey(
   brevo.TransactionalEmailsApiApiKeys.apiKey,
-  "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"
+  process.env.API_KEY_BREVO  
 );
 
 const mainSender = async ({ correoElectronico, nombreEvento, nombreCompleto }) => {
@@ -45,7 +48,7 @@ const mainSender = async ({ correoElectronico, nombreEvento, nombreCompleto }) =
 
     sendSmtpEmail.sender = {
       name: "Rimm Challenge Perú",
-      email: "leoah302003@gmail.com",
+      email: "rimmchallenge.inscripciones@gmail.com",
     };
 
     const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
